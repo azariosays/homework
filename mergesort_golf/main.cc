@@ -15,9 +15,8 @@ void merge(vector<unsigned int> &vec, int start, int mid, int end)
 {
     vector<int> left(vec.begin() + start, vec.begin() + mid + 1), right(vec.begin() + mid + 1, vec.begin() + end + 1);
 
-    int n1 = mid - start + 1, n2 = end - mid, i = 0, j = 0;
-
-    while (i < n1 && j < n2) {
+    int i = 0, j = 0, n1 = mid - start + 1, n2 = end - mid;
+    while ( i < n1 && j < n2) {
         if (left[i] < right[j]) {
             vec[start++] = left[i++];
         } else {
@@ -37,10 +36,10 @@ void merge(vector<unsigned int> &vec, int start, int mid, int end)
 void mergesort(vector<unsigned int> &vec, int start, int end)
 {
     if (start < end) {
-        int mid = (start + end) / 2;
-        mergesort(vec, start, mid);
-        mergesort(vec, mid + 1, end);
-        merge(vec, start, mid, end);
+        
+        mergesort(vec, start, ((start + end) / 2));
+        mergesort(vec, (((start + end) / 2) + 1), end);
+        merge(vec, start, ((start + end) / 2), end);
     }
 }
 //END GOLF
